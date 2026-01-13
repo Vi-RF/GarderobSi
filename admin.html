@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Админ-панель - GarderobSi</title>
+    <link rel="icon" type="image/jpeg" href="https://veryqkmxvgmwsbfzzqvj.supabase.co/storage/v1/object/public/item-images/2026-01-04%2019.16.58.jpg">
+    <link rel="stylesheet" href="css/admin.css?v=10">
+    <link rel="stylesheet" href="css/loader.css?v=1">
+</head>
+<body>
+    <!-- Экран загрузки -->
+    <div id="loaderScreen" class="loader-screen">
+        <div class="loader-container">
+            <div class="loader-logo">GarderobSi</div>
+        </div>
+    </div>
+    <!-- Экран входа -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-container">
+            <h1>🔐 Админ-панель</h1>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Логин:</label>
+                    <input type="text" id="username" required autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Пароль:</label>
+                    <input type="password" id="password" required autocomplete="current-password">
+                </div>
+                <button type="submit" class="btn btn-primary">Войти</button>
+                <div id="loginError" class="error-message" style="display: none;"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Основная админ-панель -->
+    <div id="adminPanel" class="admin-panel" style="display: none;">
+        <!-- Шапка -->
+        <header class="admin-header">
+            <h1>Admin Garderob Si</h1>
+            <button id="logoutBtn" class="btn btn-secondary">Выйти</button>
+        </header>
+
+        <!-- Навигация -->
+        <nav class="admin-nav">
+            <button class="nav-btn active" data-tab="add">➕ Добавить товар</button>
+            <button class="nav-btn" data-tab="items">📦 Все товары</button>
+            <button class="nav-btn" data-tab="stats">📊 Статистика</button>
+        </nav>
+
+        <!-- Вкладка: Добавить товар -->
+        <div id="tabAdd" class="tab-content active">
+            <h2>Добавить новый товар</h2>
+            <form id="addItemForm" class="item-form">
+                <!-- Фото товара -->
+                <div class="form-section">
+                    <label>Фото товара (до 10 штук):</label>
+                    <div class="photo-upload-area" id="photoUploadArea">
+                        <input type="file" id="photoInput" multiple accept="image/*" style="display: none;">
+                        <button type="button" class="btn btn-upload" id="uploadPhotoBtn">
+                            📷 Выбрать фото
+                        </button>
+                        <div class="photo-preview" id="photoPreview"></div>
+                    </div>
+                    <small>Можно выбрать несколько фото (до 10 штук)</small>
+                </div>
+
+                <!-- Название -->
+                <div class="form-group">
+                    <label for="itemTitle">Название товара *:</label>
+                    <input type="text" id="itemTitle" required placeholder="Например: Куртка зимняя">
+                </div>
+
+                <!-- Описание -->
+                <div class="form-group">
+                    <label for="itemDescription">Описание:</label>
+                    <textarea id="itemDescription" rows="4" placeholder="Подробное описание товара..."></textarea>
+                </div>
+
+                <!-- Цена -->
+                <div class="form-group">
+                    <label for="itemPrice">Цена (руб.) *:</label>
+                    <input type="number" id="itemPrice" required min="0" step="0.01" placeholder="5000">
+                </div>
+
+                <!-- Коллекция -->
+                <div class="form-group">
+                    <label for="itemCollection">Коллекция *:</label>
+                    <select id="itemCollection" required>
+                        <option value="">Выберите коллекцию</option>
+                        <option value="Куртки и Пуховики">Куртки и Пуховики</option>
+                        <option value="Ветровки и Жилеты">Ветровки и Жилеты</option>
+                        <option value="Кофты и Худи">Кофты и Худи</option>
+                        <option value="Футболки и Майки">Футболки и Майки</option>
+                        <option value="Штаны и Шорты">Штаны и Шорты</option>
+                        <option value="Головные уборы">Головные уборы</option>
+                        <option value="Аксессуары">Аксессуары</option>
+                    </select>
+                </div>
+
+                <!-- Размер -->
+                <div class="form-group">
+                    <label for="itemSize">Размер *:</label>
+                    <select id="itemSize" required>
+                        <option value="">Выберите размер</option>
+                        <option value="XXS">XXS</option>
+                        <option value="XS">XS</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                        <option value="3XL">3XL</option>
+                        <option value="ONE SIZE">ONE SIZE</option>
+                    </select>
+                </div>
+
+                <!-- Кнопки -->
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary" id="submitBtn">
+                        ✅ Добавить товар
+                    </button>
+                    <button type="button" class="btn btn-secondary" id="resetBtn">
+                        🔄 Очистить форму
+                    </button>
+                </div>
+
+                <!-- Сообщения -->
+                <div id="addItemMessage" class="message" style="display: none;"></div>
+            </form>
+        </div>
+
+        <!-- Вкладка: Все товары -->
+        <div id="tabItems" class="tab-content">
+            <h2>Все товары</h2>
+            <div class="items-controls">
+                <button id="refreshItemsBtn" class="btn btn-secondary">🔄 Обновить</button>
+                <div class="items-count">
+                    Всего товаров: <span id="itemsCount">0</span>
+                </div>
+            </div>
+            <div id="itemsList" class="items-list">
+                <div class="loading">Загрузка товаров...</div>
+            </div>
+        </div>
+
+        <!-- Вкладка: Статистика -->
+        <div id="tabStats" class="tab-content">
+            <h2>Статистика посещений</h2>
+            <div class="stats-controls">
+                <button id="refreshStatsBtn" class="btn btn-secondary">🔄 Обновить</button>
+            </div>
+            <div id="statsContent" class="stats-content">
+                <div class="loading">Загрузка статистики...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Подвал -->
+    <footer class="footer" style="background: #f5f5f5; border-top: 1px solid #e0e0e0; padding: 20px; margin-top: 40px; text-align: center; color: #666; font-size: 0.875rem;">
+        <div>
+            <p>Created by Vladimir Firman</p>
+            <p>Все права защищены. Garderob Si © 2026</p>
+        </div>
+    </footer>
+
+    <!-- Подключение скриптов -->
+    <script src="config.js?v=100"></script>
+    <script type="module" src="js/supabase.js?v=100"></script>
+    <script type="module" src="js/admin.js?v=100"></script>
+    <script>
+        // Управление экраном загрузки
+        window.addEventListener('load', () => {
+            const loaderScreen = document.getElementById('loaderScreen');
+            if (loaderScreen) {
+                setTimeout(() => {
+                    loaderScreen.classList.add('hidden');
+                    setTimeout(() => {
+                        loaderScreen.remove();
+                    }, 500);
+                }, 2800);
+            }
+        });
+    </script>
+</body>
+</html>
+

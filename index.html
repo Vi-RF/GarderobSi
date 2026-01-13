@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="GarderobSi - Онлайн магазин для перепродажи вещей">
+    <title>GarderobSi - Магазин вещей</title>
+    <link rel="icon" type="image/jpeg" href="https://veryqkmxvgmwsbfzzqvj.supabase.co/storage/v1/object/public/item-images/2026-01-04%2019.16.58.jpg">
+    <link rel="stylesheet" href="css/main.css?v=32">
+    <link rel="stylesheet" href="css/mobile.css?v=22">
+    <link rel="stylesheet" href="css/loader.css?v=1">
+</head>
+<body>
+    <!-- Экран загрузки -->
+    <div id="loaderScreen" class="loader-screen">
+        <div class="loader-container">
+            <div class="loader-logo">GarderobSi</div>
+        </div>
+    </div>
+    <!-- Шапка (Header) -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="https://veryqkmxvgmwsbfzzqvj.supabase.co/storage/v1/object/public/item-images/2026-01-04%2019.16.58.jpg" 
+                     alt="GarderobSi Logo" 
+                     class="logo-icon">
+                <span class="logo-text">GarderobSi</span>
+            </div>
+            <button class="game-button" id="gameButton">
+                <span class="game-button-text">ИГРАЙ В ИГРУ</span>
+                <span class="game-button-equals">=</span>
+                <span class="game-button-text">ПОЛУЧАЙ ПРИЗЫ</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Баннер -->
+    <section class="banner-section">
+        <div class="banner-container">
+            <img src="https://veryqkmxvgmwsbfzzqvj.supabase.co/storage/v1/object/public/item-images/Baner2.jpg" 
+                 alt="GarderobSi Баннер" 
+                 class="banner-image"
+                 loading="eager">
+        </div>
+    </section>
+
+    <!-- Фильтры по коллекциям -->
+    <section class="filters-section" id="filtersSection">
+        <div class="filters-container">
+            <!-- Бургер-меню с дополнительными фильтрами -->
+            <div class="filter-menu-wrapper">
+                <button class="filter-toggle" id="filterToggle" aria-label="Фильтры">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 5h14M3 10h14M3 15h14"/>
+                    </svg>
+                </button>
+                <!-- Выпадающее меню фильтров -->
+                <div class="filter-dropdown" id="filterDropdown" style="display: none;">
+                    <button class="filter-dropdown-close" id="filterDropdownClose" aria-label="Закрыть">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M15 5L5 15M5 5l10 10"/>
+                        </svg>
+                    </button>
+                    <div class="filter-dropdown-content">
+                        <!-- Фильтр по цене -->
+                        <div class="filter-group">
+                            <h3>Цена</h3>
+                            <div class="price-filter">
+                                <div class="price-input-group">
+                                    <label>От:</label>
+                                    <input type="number" id="priceFrom" placeholder="0" min="0" step="100">
+                                </div>
+                                <div class="price-input-group">
+                                    <label>До:</label>
+                                    <input type="number" id="priceTo" placeholder="∞" min="0" step="100">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Фильтр по размеру -->
+                        <div class="filter-group">
+                            <h3>Размер</h3>
+                            <div class="size-filter">
+                                <label class="size-checkbox">
+                                    <input type="checkbox" value="XXS" class="size-input">
+                                    <span>XXS</span>
+                                </label>
+                                <label class="size-checkbox">
+                                    <input type="checkbox" value="XS" class="size-input">
+                                    <span>XS</span>
+                                </label>
+                                <label class="size-checkbox">
+                                    <input type="checkbox" value="S" class="size-input">
+                                    <span>S</span>
+                                </label>
+                                <label class="size-checkbox">
+                                    <input type="checkbox" value="M" class="size-input">
+                                    <span>M</span>
+                                </label>
+                                <label class="size-checkbox">
+                                    <input type="checkbox" value="L" class="size-input">
+                                    <span>L</span>
+                                </label>
+                                <label class="size-checkbox">
+                                    <input type="checkbox" value="XL" class="size-input">
+                                    <span>XL</span>
+                                </label>
+                                <label class="size-checkbox">
+                                    <input type="checkbox" value="XXL" class="size-input">
+                                    <span>XXL</span>
+                                </label>
+                                <label class="size-checkbox">
+                                    <input type="checkbox" value="3XL" class="size-input">
+                                    <span>3XL</span>
+                                </label>
+                                <label class="size-checkbox">
+                                    <input type="checkbox" value="ONE SIZE" class="size-input">
+                                    <span>ONE SIZE</span>
+                                </label>
+                            </div>
+                        </div>
+                        <!-- Кнопки управления -->
+                        <div class="filter-actions">
+                            <button class="btn-apply-filters" id="applyFiltersBtn">Применить</button>
+                            <button class="btn-reset-filters" id="resetFiltersBtn">Сбросить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="filter-btn active" data-collection="all">
+                Все товары
+            </button>
+            <button class="filter-btn" data-collection="Куртки и Пуховики">
+                Куртки и Пуховики
+            </button>
+            <button class="filter-btn" data-collection="Ветровки и Жилеты">
+                Ветровки и Жилеты
+            </button>
+            <button class="filter-btn" data-collection="Кофты и Худи">
+                Кофты и Худи
+            </button>
+            <button class="filter-btn" data-collection="Футболки и Майки">
+                Футболки и Майки
+            </button>
+            <button class="filter-btn" data-collection="Штаны и Шорты">
+                Штаны и Шорты
+            </button>
+            <button class="filter-btn" data-collection="Головные уборы">
+                Головные уборы
+            </button>
+            <button class="filter-btn" data-collection="Аксессуары">
+                Аксессуары
+            </button>
+        </div>
+    </section>
+
+    <!-- Основной контент -->
+    <main class="main-content">
+        <!-- Состояние загрузки -->
+        <div class="loading-state" id="loadingState">
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+        </div>
+
+        <!-- Пустое состояние -->
+        <div class="empty-state" id="emptyState" style="display: none;">
+            <div class="empty-icon">📦</div>
+            <h2>Пока нет товаров</h2>
+            <p>Скоро здесь появятся новые предложения!</p>
+        </div>
+
+        <!-- Ошибка загрузки -->
+        <div class="error-state" id="errorState" style="display: none;">
+            <div class="error-icon">⚠️</div>
+            <h2>Что-то пошло не так</h2>
+            <p>Попробуйте обновить страницу</p>
+            <button class="refresh-btn" onclick="location.reload()">Обновить</button>
+        </div>
+
+        <!-- Каталог товаров -->
+        <div class="items-grid" id="itemsGrid">
+            <!-- Карточки товаров будут добавлены через JavaScript -->
+        </div>
+    </main>
+
+    <!-- Подвал -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>Created by Vladimir Firman</p>
+            <p>Все права защищены. Garderob Si © 2026</p>
+        </div>
+    </footer>
+
+    <!-- Подключение скриптов -->
+    <script src="config.js?v=102"></script>
+    <script type="module" src="js/supabase.js?v=102"></script>
+    <script type="module" src="js/main.js?v=103"></script>
+    <script>
+        // Управление экраном загрузки
+        window.addEventListener('load', () => {
+            const loaderScreen = document.getElementById('loaderScreen');
+            if (loaderScreen) {
+                // Ждем завершения анимации (2.5 секунды) + небольшая задержка
+                setTimeout(() => {
+                    loaderScreen.classList.add('hidden');
+                    // Удаляем элемент после завершения анимации
+                    setTimeout(() => {
+                        loaderScreen.remove();
+                    }, 500);
+                }, 2800);
+            }
+        });
+    </script>
+</body>
+</html>
+

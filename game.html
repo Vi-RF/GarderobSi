@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Игра - GarderobSi</title>
+    <link rel="icon" type="image/jpeg" href="https://veryqkmxvgmwsbfzzqvj.supabase.co/storage/v1/object/public/item-images/2026-01-04%2019.16.58.jpg">
+    <link rel="stylesheet" href="css/main.css?v=31">
+    <link rel="stylesheet" href="css/game.css?v=4">
+    <link rel="stylesheet" href="css/loader.css?v=1">
+</head>
+<body>
+    <!-- Экран загрузки -->
+    <div id="loaderScreen" class="loader-screen">
+        <div class="loader-container">
+            <div class="loader-logo">GarderobSi</div>
+        </div>
+    </div>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="https://veryqkmxvgmwsbfzzqvj.supabase.co/storage/v1/object/public/item-images/2026-01-04%2019.16.58.jpg" 
+                     alt="GarderobSi Logo" 
+                     class="logo-icon">
+                <span class="logo-text">GarderobSi</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Game Container -->
+    <main class="game-container">
+        <!-- Level Info -->
+        <div class="level-info">
+            <h1 class="level-title">Уровень <span id="currentLevel">1</span></h1>
+            <div class="timer">
+                <span class="timer-label">Время:</span>
+                <span id="timerDisplay">00:00</span>
+            </div>
+        </div>
+
+        <!-- Puzzle Board -->
+        <div class="puzzle-section">
+            <div id="puzzleBoard" class="puzzle-board level-1">
+                <!-- Puzzle cells будут созданы динамически -->
+            </div>
+            
+            <!-- Puzzle Pieces Container -->
+            <div id="puzzlePieces" class="puzzle-pieces level-1">
+                <!-- Puzzle pieces будут созданы динамически -->
+            </div>
+        </div>
+
+        <!-- Return to Shop Button -->
+        <div class="game-footer">
+            <button id="returnToShopBtn" class="return-btn">Вернуться в магазин</button>
+        </div>
+    </main>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <img id="modalImage" src="" alt="Пазл собран" class="modal-image">
+            <button id="downloadBtn" class="download-btn">Скачать изображение</button>
+            <div class="promo-code">
+                <p id="promoText" class="promo-text"></p>
+            </div>
+            <button id="nextLevelBtn" class="next-level-btn">Следующий уровень</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>Created by Vladimir Firman</p>
+            <p>Все права защищены. Garderob Si © 2026</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module" src="js/game.js?v=18"></script>
+    <script>
+        // Управление экраном загрузки (2 секунды для игры)
+        window.addEventListener('load', () => {
+            const loaderScreen = document.getElementById('loaderScreen');
+            if (loaderScreen) {
+                setTimeout(() => {
+                    loaderScreen.classList.add('hidden');
+                    setTimeout(() => {
+                        loaderScreen.remove();
+                    }, 500);
+                }, 2000); // 2 секунды для игры
+            }
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,321 @@
+/* ============================================
+   МОБИЛЬНАЯ АДАПТАЦИЯ
+   ============================================ */
+
+/* Планшеты (768px - 1024px) */
+@media (max-width: 1024px) {
+    .items-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-md);
+    }
+}
+
+/* Мобильные устройства (до 768px) */
+@media (max-width: 768px) {
+    /* Шапка */
+    .header-content {
+        padding: var(--spacing-md);
+        gap: var(--spacing-sm);
+    }
+
+    .logo {
+        font-size: 1.25rem;
+        flex-shrink: 0;
+    }
+
+    .logo-icon {
+        width: 48px;
+        height: 48px;
+    }
+
+    /* Баннер */
+    .banner-section {
+        padding: 0;
+    }
+
+    .banner-container {
+        padding: 0;
+    }
+
+    .banner-image {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
+    /* Фильтры */
+    .filters-section {
+        top: 56px;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .filters-container {
+        padding: var(--spacing-md);
+        gap: var(--spacing-xs);
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+    }
+    
+    /* Показываем скроллбар на мобильных для индикации прокрутки */
+    .filters-container::-webkit-scrollbar {
+        height: 3px;
+    }
+    
+    .filters-container::-webkit-scrollbar-thumb {
+        background: rgba(58, 58, 58, 0.5);
+        border-radius: 2px;
+    }
+
+    .filter-btn {
+        padding: var(--spacing-xs) var(--spacing-md);
+        font-size: 0.8125rem;
+    }
+
+    /* Выпадающее меню фильтров на мобильном */
+    .filter-dropdown {
+        min-width: calc(100vw - var(--spacing-lg) * 2);
+        max-width: calc(100vw - var(--spacing-lg) * 2);
+        left: 0;
+        right: 0;
+        margin: 0 var(--spacing-md);
+    }
+
+    .size-filter {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Основной контент */
+    .main-content {
+        padding: var(--spacing-md);
+    }
+
+    /* Каталог - 2 колонки на мобильном */
+    .items-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: var(--spacing-sm);
+    }
+    
+    /* Убираем минимальную ширину для карточек на мобильном */
+    .item-card {
+        min-width: 0;
+    }
+
+    .loading-state {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: var(--spacing-sm);
+    }
+    
+    .skeleton-card {
+        min-width: 0;
+    }
+
+    /* Карточка товара */
+    .item-content {
+        padding: var(--spacing-md);
+    }
+
+    .item-title {
+        font-size: 1rem;
+    }
+
+    .item-price {
+        font-size: 1.125rem;
+    }
+
+    .buy-button {
+        padding: var(--spacing-md);
+        font-size: 0.9375rem;
+        min-height: 44px; /* Touch-friendly */
+    }
+
+    /* Стрелки карусели удалены - используется только свайп/скролл */
+
+    /* Подвал */
+    .footer {
+        padding: var(--spacing-md);
+    }
+
+    /* Пустое состояние */
+    .empty-state,
+    .error-state {
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+
+    .empty-icon,
+    .error-icon {
+        font-size: 3rem;
+    }
+
+    /* Кнопка игры на мобильных устройствах */
+    .game-button {
+        font-size: 0.6rem;
+        padding: 6px 10px;
+        gap: 2px;
+        min-width: 0;
+        flex: 0 1 auto;
+        max-width: 90%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        line-height: 1.1;
+        white-space: normal;
+        border-width: 1.5px;
+    }
+
+    .game-button-text {
+        font-size: 0.55rem;
+        line-height: 1.1;
+        white-space: normal;
+        word-break: break-word;
+        text-align: center;
+        width: 100%;
+        display: block;
+    }
+
+    .game-button-equals {
+        font-size: 0.6rem;
+        margin: 0;
+        flex-shrink: 0;
+        width: 100%;
+        text-align: center;
+        display: block;
+    }
+}
+
+/* Маленькие мобильные (до 480px) */
+@media (max-width: 480px) {
+    .header-content {
+        padding: var(--spacing-sm) var(--spacing-md);
+        gap: var(--spacing-xs);
+    }
+
+    .logo {
+        font-size: 1.125rem;
+    }
+
+    .logo-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .game-button {
+        font-size: 0.55rem;
+        padding: 5px 8px;
+        gap: 1px;
+        max-width: 85%;
+        border-width: 1.5px;
+    }
+
+    .game-button-text {
+        font-size: 0.5rem;
+        line-height: 1;
+    }
+
+    .game-button-equals {
+        font-size: 0.55rem;
+    }
+}
+
+/* Маленькие мобильные (до 375px) */
+@media (max-width: 375px) {
+    .header-content {
+        padding: var(--spacing-sm) var(--spacing-md);
+        gap: var(--spacing-xs);
+    }
+
+    .logo {
+        font-size: 1.125rem;
+    }
+
+    .logo-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .game-button {
+        font-size: 0.5rem;
+        padding: 4px 6px;
+        gap: 1px;
+        max-width: 80%;
+        border-width: 1.5px;
+    }
+
+    .game-button-text {
+        font-size: 0.45rem;
+        line-height: 1;
+    }
+
+    .game-button-equals {
+        font-size: 0.5rem;
+    }
+    
+    /* Для очень маленьких экранов */
+    @media (max-width: 360px) {
+        .game-button {
+            font-size: 0.45rem;
+            padding: 4px 5px;
+            gap: 0.5px;
+            max-width: 75%;
+        }
+        
+        .game-button-text {
+            font-size: 0.4rem;
+        }
+        
+        .game-button-equals {
+            font-size: 0.45rem;
+        }
+    }
+
+    .filters-container {
+        padding: var(--spacing-sm) var(--spacing-md);
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .main-content {
+        padding: var(--spacing-sm);
+    }
+
+    .items-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: var(--spacing-xs);
+    }
+}
+
+/* Touch-friendly для всех мобильных */
+@media (hover: none) and (pointer: coarse) {
+    /* Убираем hover эффекты на мобильных */
+    .item-card:hover {
+        transform: none;
+        box-shadow: var(--shadow-md);
+    }
+
+    .filter-btn:hover {
+        border-color: var(--border-color);
+        color: var(--text-secondary);
+        background-color: var(--card-bg);
+    }
+
+    .buy-button:hover {
+        transform: none;
+    }
+}
+
+/* Портретная ориентация */
+@media (orientation: portrait) {
+    .item-image-container {
+        aspect-ratio: 1;
+    }
+}
+
+/* Ландшафтная ориентация */
+@media (orientation: landscape) and (max-width: 768px) {
+    .items-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
